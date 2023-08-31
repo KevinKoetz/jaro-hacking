@@ -1,41 +1,35 @@
-import jsonwebtoken from "jsonwebtoken";
-import { NextRequest } from "next/server";
+import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-export default function canAccess(hack: number, request: NextRequest) {
+export default async function canAccess(hack: number) {
+  console.log(hack);
   switch (hack) {
     case 0:
     case 1:
       return true;
     default:
       const jwt = cookies().get("token")?.value;
+      console.log(jwt);
       if (jwt === undefined) {
+        console.log("here?");
         return false;
       }
-      const secret = process.env["ENCRYPTION_SECRET"];
-      if (secret === undefined) {
+      const secretEnv = process.env["ENCRYPTION_SECRET"];
+      if (secretEnv === undefined) {
         throw new Error("Encryption secret is undefined.");
       }
+      const secret = new TextEncoder().encode(secretEnv);
       //TODO: Add Propper Options
-      const payload = jsonwebtoken.verify(jwt, secret);
-      if (typeof payload === "string") {
-        throw new Error("Invalid Token.");
+      const result = await jwtVerify(jwt, secret);
+
+      if (typeof result.payload.scope !== "string") {
+        return false;
       }
-      const scopes: number[] = payload.scope
+
+      const scopes: number[] = result.payload.scope
         .split(" ")
         .map((scope: string) => Number.parseInt(scope));
+      console.log(scopes);
       return scopes.includes(hack);
   }
-}
-
-function extractJwt(request: NextRequest): string | Error {
-  const authHeader = request.headers.get("Authorization");
-  if (authHeader === null) {
-    return new Error("Missing Authorization Header.");
-  }
-  const [type, token] = authHeader.split(" ");
-  if (type.toLowerCase() !== "bearer") {
-    return new Error("Invalid Authentication Method.");
-  }
-  return token;
 }

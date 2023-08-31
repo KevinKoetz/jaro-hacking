@@ -8,7 +8,8 @@ export async function middleware(request: NextRequest) {
   if (hackId instanceof Error) {
     return new NextResponse(hackId.message, { status: 404 });
   }
-  if (!canAccess(hackId, request)) {
+  if (!(await canAccess(hackId))) {
+    console.log("Here!");
     return new NextResponse(null, { status: 403 });
   }
 }

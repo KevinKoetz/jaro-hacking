@@ -15,5 +15,5 @@ export default function HackPage(context: { params: { id: string } }) {
   if (Number.isNaN(id) || id < 0 || id > hacks.length - 1) {
     throw new Error("Ungültiger Pfad Parameter.");
   }
-  return hacks[id](context);
+  return hacks[id]({ params: { id } });
 }
