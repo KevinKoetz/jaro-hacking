@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": true
+            },
+            "previewLimit": 50,
+            "server": "ep-floral-star-47600329-pooler.us-east-1.postgres.vercel-storage.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "jaro-hacking",
+            "username": "default",
+            "database": "verceldb"
+        }
+    ]
+}
