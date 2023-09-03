@@ -1,19 +1,21 @@
-import CommonlyUsedPasswords from "@/app/_hacks/CommonlyUsedPasswords";
-import DisabledAttribute from "@/app/_hacks/DisabledAttribute";
-import PasswordAsComment from "@/app/_hacks/PasswordAsComment";
-import UrlManipulation from "@/app/_hacks/UrlManipulation";
+import { hackConfigs } from "@/config";
+import { FC } from "react";
 
-const hacks = [
-  UrlManipulation,
-  PasswordAsComment,
-  DisabledAttribute,
-  CommonlyUsedPasswords,
-];
+export async function generateStaticParams() {
+  return await Promise.all(
+    hackConfigs.map(async (config) => ({
+      id: config.hackId.toString(),
+    }))
+  );
+}
 
-export default function HackPage(context: { params: { id: string } }) {
+export default async function HackPage(context: { params: { id: string } }) {
   const id = Number.parseInt(context.params.id);
-  if (Number.isNaN(id) || id < 0 || id > hacks.length - 1) {
+  if (Number.isNaN(id) || id < 0 || id > hackConfigs.length - 1) {
     throw new Error("Ungültiger Pfad Parameter.");
   }
-  return hacks[id]({ params: { id } });
+  const component = (
+    await import(`../../_hacks/${hackConfigs[id].component}.tsx`)
+  ).default;
+  return component({ params: { id } });
 }
