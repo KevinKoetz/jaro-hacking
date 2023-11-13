@@ -7,24 +7,39 @@ export type HackConfig = {
 
 const configs: Omit<HackConfig, "hackId">[] = [
   {
+    component: "Intro",
+    isAuthenticated: false,
+    hasSecret: false,
+  },
+  {
     component: "UrlManipulation",
     isAuthenticated: false,
     hasSecret: false,
   },
   {
-    component: "PasswordAsComment",
-    isAuthenticated: false,
-    hasSecret: true,
-  },
-  {
     component: "DisabledAttribute",
     isAuthenticated: true,
-    hasSecret: true,
+    hasSecret: false,
   },
   {
     component: "CommonlyUsedPasswords",
     isAuthenticated: true,
+    hasSecret: false,
+  },
+  {
+    component: "PasswordAsComment",
+    isAuthenticated: true,
+    hasSecret: false,
+  },
+  {
+    component: "Secret",
+    isAuthenticated: true,
     hasSecret: true,
+  },
+  {
+    component: "ExtraChallenge",
+    isAuthenticated: true,
+    hasSecret: false,
   },
 ];
 

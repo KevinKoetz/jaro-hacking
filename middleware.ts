@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
     return new NextResponse(hackId.message, { status: 404 });
   }
   if (!(await canAccess(hackId))) {
-    console.log("Here!");
+    console.log("Access denied for hackId: ", hackId);
     return new NextResponse(null, { status: 403 });
   }
 }

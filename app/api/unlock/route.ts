@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SignJWT, decodeJwt, JWTPayload } from "jose";
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 import { UnlockDto } from "./unlockDto";
 
 export async function POST(request: NextRequest) {
