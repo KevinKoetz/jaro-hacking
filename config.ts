@@ -18,7 +18,7 @@ const configs: Omit<HackConfig, "hackId">[] = [
   },
   {
     component: "DisabledAttribute",
-    isAuthenticated: true,
+    isAuthenticated: false,
     hasSecret: false,
   },
   {

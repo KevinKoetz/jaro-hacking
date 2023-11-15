@@ -5,12 +5,14 @@ import canAccess from "./app/_auth/canAccess";
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const hackId = extractHackId(request);
+  request.cookies
+
   if (hackId instanceof Error) {
     return new NextResponse(hackId.message, { status: 404 });
   }
-  if (!(await canAccess(hackId))) {
+  if (!(await canAccess(hackId, request.cookies))) {
     console.log("Access denied for hackId: ", hackId);
-    return new NextResponse(null, { status: 403 });
+    return new NextResponse(null, { status: 403});
   }
 }
 

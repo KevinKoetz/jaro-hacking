@@ -16,32 +16,31 @@ async function prepareDataBase() {
 
   await sqlClient.sql`DROP TABLE IF EXISTS hack`;
 
-  await sqlClient.sql`CREATE TABLE Hack (
+  await sqlClient.sql`CREATE TABLE hack (
     id INT NOT NULL PRIMARY KEY,
     password VARCHAR(50),
     secret VARCHAR(200)
     );`;
 
-  sqlClient;
-
-  for (const hack of hackConfigs) {
+  for (const [id, hack] of Object.entries(hackConfigs)) {
     const hackId = hack.hackId;
     let password: string | null = null;
+    let secret: string | null = null;
     if (hack.isAuthenticated) {
-      if (hack.component === "CommonlyUsedPasswords") {
+      if (hackConfigs[Number.parseInt(id) - 1].component === "CommonlyUsedPasswords") {
         password = "123456";
       } else {
         password = generateRandomString(8);
       }
     }
     if (hack.hasSecret) {
-      const secret = await rl.question(`Geheimnis für hackId: ${hackId}?\n`);
-      await sqlClient.query(
-        `INSERT INTO hack
-        VALUES ($1, $2, $3)`,
-        [hackId, password, secret]
-      );
+      secret = await rl.question(`Geheimnis für hackId: ${hackId}?\n`);
     }
+    await sqlClient.query(
+      `INSERT INTO hack
+      VALUES ($1, $2, $3)`,
+      [hackId, password, secret]
+    );
   }
   await sqlClient.end();
   rl.close();

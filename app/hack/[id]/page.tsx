@@ -1,5 +1,5 @@
 import { hackConfigs } from "@/config";
-import { FC } from "react";
+import { HackContext } from "../HackContext";
 
 export async function generateStaticParams() {
   return await Promise.all(
@@ -9,8 +9,8 @@ export async function generateStaticParams() {
   );
 }
 
-export default async function HackPage(context: { params: { id: string } }) {
-  const id = Number.parseInt(context.params.id);
+export default async function HackPage(context: HackContext) {
+  const id = Number.parseInt(context.params.id as unknown as string);
   if (Number.isNaN(id) || id < 0 || id > hackConfigs.length - 1) {
     throw new Error("Ungültiger Pfad Parameter.");
   }
