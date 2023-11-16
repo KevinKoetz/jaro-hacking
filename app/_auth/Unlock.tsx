@@ -56,7 +56,12 @@ export default function Unlock({
       )}
       {/*I know there is onClick from react, but this is needed to be able 
 to manipulate the disabled attribute in the browser without react dev tools*/}
-      <button ref={(r) => (ref.current = r)} type="button" disabled={disabled}>
+      <button
+        ref={(r) => (ref.current = r)}
+        type="button"
+        disabled={disabled}
+        className="middle none center rounded-lg bg-pink-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      >
         Nächste Seite freischalten
       </button>
     </form>
