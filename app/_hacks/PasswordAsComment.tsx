@@ -24,6 +24,7 @@ export default async function PasswordAsComment(context: HackContext) {
         </ResourceLink>
         im Quellcode vergessen. Vielleicht findest du es über die Devtools?
       </p>
+      <b>Bitte beachte dass das Passwort nicht der einzige Kommentar sein muss.</b>
       <Comment comment={`Testweise Zugang über Adminpasswort: ${password} `} />
       <Unlock hackId={context.params.id + 1}></Unlock>
     </div>
