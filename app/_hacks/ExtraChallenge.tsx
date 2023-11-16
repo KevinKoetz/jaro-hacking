@@ -1,4 +1,3 @@
 export default async function ExtraChallenge() {
-
-  return <div>Respekt!</div>;
+  return <div>Respekt für deine Ausdauer!</div>;
 }

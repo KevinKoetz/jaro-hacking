@@ -18,14 +18,13 @@ export default function MatrixBackground() {
 
       setInterval(() => matrix(canvas, ctx, cols, ypos), 50);
     }
-    console.log("rendered");
   }, []);
   return (
     <canvas
       ref={(el) => {
         ref.current = el;
       }}
-      className="fixed top-0 left-0 -z-50"
+      className="fixed top-0 left-0 -z-50 w-full h-full"
       style={{ backgroundColor: "black" }}
     ></canvas>
   );

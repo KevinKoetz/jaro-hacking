@@ -10,6 +10,7 @@ export default function Intro(context: HackContext) {
         deren Lösung du den Code für das Zahlenschloss an deinem Geschenk finden
         wirst.
       </p>
+      <p>Am besten verwendest du den Microsoft Edge Browser für diese Internetseite!</p>
       <p className="mb-6">Ich hoffe du hast Spaß!</p>
       <Link
         href={`/hack/${context.params.id + 1}`}

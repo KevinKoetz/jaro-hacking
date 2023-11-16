@@ -8,7 +8,7 @@ export default function PageLayout({
   return (
     <>
       <MatrixBackground></MatrixBackground>
-      {children}
+      <div className="container mx-auto bg-gray-50/80 p-5 m-10">{children}</div>
     </>
   );
 }
