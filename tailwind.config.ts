@@ -17,5 +17,5 @@ const config: Config = withMT({
     },
   },
   plugins: [],
-});
+}) as Config;
 export default config;
