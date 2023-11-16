@@ -13,14 +13,15 @@ export default function Unlock({
   password?: string;
   disabled?: boolean;
 }) {
-  const ref = useRef<HTMLButtonElement | null>();
+  const ref = useRef<HTMLFormElement | null>();
   const [password, setPassword] = useState<string>("");
   const [invalidPw, setInvalidPw] = useState<boolean>(false);
   const [showSpinner, setShowSpinner] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
-    const unlock = async () => {
+    const unlock = async (e: Event) => {
+      e.preventDefault();
       setShowSpinner(true);
       setInvalidPw(false);
       const res = await fetch("/api/unlock", {
@@ -39,11 +40,11 @@ export default function Unlock({
       setShowSpinner(false);
     };
     if (ref.current) {
-      ref.current.addEventListener("click", unlock);
+      ref.current.addEventListener("submit", unlock);
     }
     return () => {
       if (ref.current) {
-        ref.current.removeEventListener("click", unlock);
+        ref.current.removeEventListener("submit", unlock);
       }
     };
   }, [
@@ -56,7 +57,12 @@ export default function Unlock({
   ]);
 
   return (
-    <form className="my-3" onSubmit={(e) => e.preventDefault()}>
+    <form
+      className="my-3"
+      ref={(e) => {
+        ref.current = e;
+      }}
+    >
       {providedPassword ? null : (
         <div>
           <label htmlFor="password">Passwort: </label>
@@ -68,11 +74,8 @@ export default function Unlock({
           />
         </div>
       )}
-      {/*I know there is onClick from react, but this is needed to be able 
-to manipulate the disabled attribute in the browser without react dev tools*/}
       <button
-        ref={(r) => (ref.current = r)}
-        type="button"
+        type="submit"
         disabled={disabled}
         className="middle none center rounded-lg bg-green-500 mt-3 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       >
