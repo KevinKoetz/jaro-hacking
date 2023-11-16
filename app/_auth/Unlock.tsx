@@ -56,7 +56,7 @@ export default function Unlock({
   ]);
 
   return (
-    <form className="my-3">
+    <form className="my-3" onSubmit={(e) => e.preventDefault()}>
       {providedPassword ? null : (
         <div>
           <label htmlFor="password">Passwort: </label>
