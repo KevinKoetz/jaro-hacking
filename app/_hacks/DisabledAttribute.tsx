@@ -18,6 +18,7 @@ export default async function DisabledAttribute(context: HackContext) {
         Gut gemacht! Die nächsten Seiten sind allerdings nicht so einfach zu
         erreichen.
       </p>
+    
       <p>
         Auf dieser Seite gibt es bereits einen Button "Nächste Seite
         Freischalten" welcher dich zur nächsten Aufgabe bringt.
@@ -57,6 +58,7 @@ export default async function DisabledAttribute(context: HackContext) {
       <p>
         Findest du den Button und kannst das disabled Attribut entfernen?
       </p>
+      <b>Du kannst hier nichts kaputt machen! Probier einfach aus und klicke auf Sachen. Mit den kleinen weißen Dreiecken an den Elementen kannst du diese ausklappen. Du kannst auch Elemente löschen oder neue hinzufügen. Sollte doch etwas nicht mehr funktionieren oder der Button verschwinden, lade die Seite einfach neu.</b>
       <Unlock
         hackId={context.params.id + 1}
         password={password}
