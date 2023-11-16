@@ -39,7 +39,7 @@ export default function Unlock({
         ref.current.removeEventListener("click", unlock);
       }
     };
-  }, [password]);
+  }, [password, hackId, providedPassword, router]);
 
   return (
     <form className="my-3">
