@@ -19,12 +19,12 @@ export default async function DisabledAttribute(context: HackContext) {
         erreichen.
       </p>
       <p>
-        Auf diese Seite gibt es bereits einen Button "Nächste Seite
+        Auf dieser Seite gibt es bereits einen Button "Nächste Seite
         Freischalten" welcher dich zur nächsten Aufgabe bringt.
       </p>
       <p>
-        Leider hat jemand diesem Button das "disabled" Atribut
-        (deaktiviert/ausgeschalten). Deine Aufgabe ist es, den Button wieder zu
+        Leider hat jemand diesem Button das "disabled" Attribut
+        (deaktiviert/ausgeschalten) verpasst. Deine Aufgabe ist es, den Button wieder zu
         aktivieren!
       </p>
       <p>

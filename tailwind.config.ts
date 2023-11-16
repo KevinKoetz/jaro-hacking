@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
-//@ts-ignore
-import withMT from "@material-tailwind/html/utils/withMT";
+import withMT from "@material-tailwind/react/utils/withMT";
 
 const config: Config = withMT({
   content: [
