@@ -16,7 +16,16 @@ export default function MatrixBackground() {
       ctx.fillStyle = "#000";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      setInterval(() => matrix(canvas, ctx, cols, ypos), 50);
+      let interval = setInterval(() => matrix(canvas, ctx, cols, ypos), 50);
+
+      const resizeObserver = new ResizeObserver(() => {
+        clearInterval(interval);
+        let cols = Math.floor(window.innerWidth / 20) + 1;
+        let ypos = Array(cols).fill(0);
+        interval = setInterval(() => matrix(canvas, ctx, cols, ypos), 50);
+      });
+
+      resizeObserver.observe(document.body);
     }
   }, []);
   return (
