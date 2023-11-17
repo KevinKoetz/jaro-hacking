@@ -65,7 +65,7 @@ export default async function Secret(context: HackContext) {
         Auf der rechten Seite siehst du, dass die "Payload" einen Eintrag
         "scope" hat. Dass sind alle Seiten auf welche du mit diesem Token
         Zugriff hast. Auf der Seite kannst du auf der rechten "Decoded" Seite
-        auch einfach einen Eintrag für die Seite 6 hinzufügen im scope
+        auch einfach einen Eintrag für die Seite 6 im scope
         hinzufügen ("scope": "3 4 5 6"). Dadurch ändert sich der Token auf der
         linken "Encoded" Seite.
       </p>
